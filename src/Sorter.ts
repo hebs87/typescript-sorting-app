@@ -1,10 +1,12 @@
 // Define an interface to make the Sorter class generic and work with any data structure, as long as its sorting
 // class has the following properties
-interface Sortable {
-  length: number;
-  compare: (leftIndex: number, rightIndex: number) => boolean;
-  swap: (leftIndex: number, rightIndex: number) => void;
-}
+
+// interface is not needed, as we have defined this in the abstract class
+// interface Sortable {
+//   length: number;
+//   compare: (leftIndex: number, rightIndex: number) => boolean;
+//   swap: (leftIndex: number, rightIndex: number) => void;
+// }
 
 // This is an Abstract class - can only be used in a child class and cannot be instantiated directly
 export abstract class Sorter {
