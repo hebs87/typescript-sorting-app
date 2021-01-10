@@ -6,20 +6,24 @@ interface Sortable {
   swap: (leftIndex: number, rightIndex: number) => void;
 }
 
-export class Sorter {
-  // collection must be an array of numbers - the variable is initialised automatically when it is passed in
-  constructor(public collection: Sortable) {}
+// This is an Abstract class - can only be used in a child class and cannot be instantiated directly
+export abstract class Sorter {
+  // Tell the class that the following properties will exist in the future - alternative to interface
+  abstract length: number;
+  abstract compare: (leftIndex: number, rightIndex: number) => boolean;
+  abstract swap: (leftIndex: number, rightIndex: number) => void;
 
+  // This will only ever be called in the child class, so we reference this as the child class
   sort = (): void => {
-    const { length } = this.collection;
+    const { length } = this;
 
     // Bubble sort algorithm
     for (let i = 0; i < length; i++) {
       // Ignore the right-most element on each progressive loop
       for (let j = 0; j < length - i - 1; j++) {
-        if (this.collection.compare(j, j + 1)) {
+        if (this.compare(j, j + 1)) {
           // If the element on the left is greater, swap it with the element on the right
-          this.collection.swap(j, j + 1);
+          this.swap(j, j + 1);
         }
       }
     }
